@@ -1,13 +1,14 @@
+import React from "react";
+
 import CardPageVisits from "@/components/Cards/CardPageVisits";
 import CardPageVisitItem from "@/components/Cards/CardPageVisitItem";
-import Showcase from "@/components/Showcase";
 
 import { API_URL } from "@/config/index";
 
-export default function Home({ events }) {
+export default function EventsPage({ events }) {
+  // console.log("kudel .... ", events);
   return (
     <>
-      <Showcase />
       <div className="relative px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <CardPageVisits>
           <CardPageVisitItem data={events} />
@@ -17,7 +18,7 @@ export default function Home({ events }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(`${API_URL}/api/events`);
   const resData = await res.json();
   const events = resData.data;
